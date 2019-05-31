@@ -30,13 +30,13 @@ func NewServerVersionCommand(streams genericclioptions.IOStreams) *cobra.Command
 	return cmd
 }
 
-func (hw *serverVersionCmd) run() error {
+func (sv *serverVersionCmd) run() error {
 	serverVersion, err := getServerVersion()
 	if err != nil {
 		return err
 	}
 
-	_, err = fmt.Fprintf(hw.out, "Hello from Kubernetes server with version %s!\n", serverVersion)
+	_, err = fmt.Fprintf(sv.out, "Hello from Kubernetes server with version %s!\n", serverVersion)
 	if err != nil {
 		return err
 	}
