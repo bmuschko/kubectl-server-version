@@ -1,4 +1,4 @@
-module github.com/bmuschko/kubectl-hello-world
+module github.com/bmuschko/kubectl-server-version
 
 go 1.12
 

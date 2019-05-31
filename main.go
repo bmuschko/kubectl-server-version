@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/bmuschko/kubectl-hello-world/cmd"
+	"github.com/bmuschko/kubectl-server-version/cmd"
 	"k8s.io/cli-runtime/pkg/genericclioptions"
 	"os"
 )
