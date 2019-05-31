@@ -1,0 +1,25 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/golang:1.12.5
+        environment:
+          GO111MODULE: "ON"
+    steps:
+      - run:
+          name: Compile
+          command: go build
+      - run:
+          name: Tests
+          command: go test ./... -coverprofile=coverage.txt -covermode=count || bash <(curl -s https://codecov.io/bash)
+      - run:
+          name: Code Quality
+          command:
+            curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | bash -s -- -b $GOPATH/bin v1.12.5
+            golangci-lint run
+      - run:
+          name: Release
+          command: |
+            if [ "$CIRCLE_TAG" ]; then
+              curl -sL https://git.io/goreleaser | bash
+            fi
