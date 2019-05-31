@@ -7,14 +7,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-            - go-mod-cache
+            - go-mod-v1-{{ checksum "go.sum" }}
       - run:
           name: Compile Packages and Dependencies
           command: go build
       - save_cache:
-          key: go-mod-cache
+          key: go-mod-v1-{{ checksum "go.sum" }}
           paths:
-            - $GOPATH/pkg/mod
+            - "/go/pkg/mod"
       - run:
           name: Unit Tests
           command: go test ./... -coverprofile=coverage.txt -covermode=count || bash <(curl -s https://codecov.io/bash)
