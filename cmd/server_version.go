@@ -13,6 +13,7 @@ type serverVersionCmd struct {
 	out io.Writer
 }
 
+// NewServerVersionCommand creates the command for rendering the Kubernetes server version.
 func NewServerVersionCommand(streams genericclioptions.IOStreams) *cobra.Command {
 	helloWorldCmd := &serverVersionCmd{
 		out: streams.Out,
