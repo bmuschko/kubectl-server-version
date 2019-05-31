@@ -1,4 +1,4 @@
-= kubectl server-version
+= kubectl server-version image:https://circleci.com/gh/bmuschko/kubectl-server-version.svg?style=svg["CircleCI", link="https://circleci.com/gh/bmuschko/kubectl-server-version"]
 
 A simple kubectl plugin for displaying the Kubernetes server version.
 This project is meant to demonstrate the use of the Go-based Kubernetes client API invoked from a kubectl plugin.
