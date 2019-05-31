@@ -5,9 +5,16 @@ jobs:
       - image: circleci/golang:1.12.5
     steps:
       - checkout
+      - restore_cache:
+          keys:
+            - go-mod-cache
       - run:
           name: Compile Packages and Dependencies
           command: go build
+      - save_cache:
+          key: go-mod-cache
+          paths:
+            - $GOPATH/pkg/mod
       - run:
           name: Unit Tests
           command: go test ./... -coverprofile=coverage.txt -covermode=count || bash <(curl -s https://codecov.io/bash)
