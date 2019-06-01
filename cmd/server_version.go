@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"errors"
 	"fmt"
 	"github.com/spf13/cobra"
 	"io"
@@ -24,10 +25,14 @@ func NewServerVersionCommand(streams genericclioptions.IOStreams) *cobra.Command
 		Short:        "Prints Kubernetes server version",
 		SilenceUsage: true,
 		RunE: func(c *cobra.Command, args []string) error {
+			if len(args) != 0 {
+				return errors.New("this command does not accept arguments")
+			}
 			return helloWorldCmd.run()
 		},
 	}
 
+	cmd.AddCommand(newVersionCmd(streams.Out))
 	return cmd
 }
 
