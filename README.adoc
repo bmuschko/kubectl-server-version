@@ -32,8 +32,18 @@ For more information, see the https://kubernetes.io/docs/tasks/extend-kubectl/ku
 
 == Usage
 
+Run the command `server-version` to render the Kubernetes server version.
+
 [source,bash]
 ----
 $ kubectl server-version
 Hello from Kubernetes server with version v1.10.11!
+----
+
+The subcommand `version` renders the version of the released binary.
+
+[source,bash]
+----
+$ kubectl server-version version
+kubectl server-version v0.2.0
 ----
