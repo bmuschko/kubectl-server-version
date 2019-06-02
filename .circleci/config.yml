@@ -9,12 +9,15 @@ jobs:
           keys:
             - go-mod-v1-{{ checksum "go.sum" }}
       - run:
-          name: Compile Packages and Dependencies
-          command: go build
+          name: Download Dependencies
+          command: go mod download
       - save_cache:
           key: go-mod-v1-{{ checksum "go.sum" }}
           paths:
             - "/go/pkg/mod"
+      - run:
+          name: Compile Packages and Dependencies
+          command: go build
       - run:
           name: Unit Tests
           command: go test ./... -coverprofile=coverage.txt -covermode=count || bash <(curl -s https://codecov.io/bash)
